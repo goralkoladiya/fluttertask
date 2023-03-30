@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
                             height: 60,
                             onPressed: () {
                               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                return getdata();
+                                return LoginPage();
                               },));
                             },
                             color: Colors.indigoAccent[400],

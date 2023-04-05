@@ -26,8 +26,8 @@ class SignupPage extends StatelessWidget {
           child: Container(
             height: MediaQuery.of(context).size.height,
             width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: ListView(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   children: [
@@ -93,14 +93,16 @@ class SignupPage extends StatelessWidget {
                             String Response=map['Response'];
                             String Message=map['Message'];
                             List arr=Message.split(":");
-                            // String login=arr[0];
-                            // String password=arr[1];
+                            String login=arr[1].toString().split(",")[0];
+                            String password=arr[2].toString().split("and")[0];
                             String accesstoken=arr[3];
                             // print(login);
                             // print(password);
                             print(accesstoken);
-                            Navigator.push(context, MaterialPageRoute(builder: (context) {
-                              return getdata(accesstoken,t2.text,t3.text);
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$Response")));
+                            await Future.delayed(Duration(seconds: 1));
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                              return getdata(Response,accesstoken,login,password);
                             },));
                           },
                           color: Colors.redAccent,

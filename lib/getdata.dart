@@ -9,8 +9,8 @@ import 'details.dart';
 import 'event.dart';
 
 class getdata extends StatefulWidget {
- String? accesstoken,user,password;
- getdata([this.accesstoken,this.user,this.password]);
+ String? Response,accesstoken,user,password;
+ getdata([this.Response,this.accesstoken,this.user,this.password]);
 
   @override
   State<getdata> createState() => _getdataState();
@@ -42,17 +42,22 @@ class _getdataState extends State<getdata> {
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
     Map m=jsonDecode(response.body);
-    if(m['success'])
+    if(m['message']=="Data Not Found")
       {
-        list=m['Datas'];
-        // Map map=list[0]['eq'];
-        list[0]['eq'].forEach((element) {
-          eventlist.add(event.fromJson(element));
-        });
         setState(() {
-          data=true;
+          data=false;
         });
       }
+    else{
+      list=m['Datas'];
+      // Map map=list[0]['eq'];
+      list[0]['eq'].forEach((element) {
+        eventlist.add(event.fromJson(element));
+      });
+      setState(() {
+        data=true;
+      });
+    }
 
   }
 
@@ -66,7 +71,7 @@ class _getdataState extends State<getdata> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text("Details"),),
       body: data?ListView.builder(itemBuilder: (context, index) {
         return ListTile(
           onTap: () {
@@ -79,7 +84,14 @@ class _getdataState extends State<getdata> {
           trailing: Text("${eventlist[index].country}"),
         );
       },itemCount: eventlist.length,
-      ):Center(child: CircularProgressIndicator(),),
+      ):ListView(
+        children: [
+          ListTile(title: Text("User: ${widget.user}"),),
+          ListTile(title: Text("Password: ${widget.password}"),),
+          ListTile(title: Text("AccessToken: ${widget.accesstoken}"),),
+          ListTile(title: Text("${widget.Response}"),),
+        ],
+      )
     );
   }
 }

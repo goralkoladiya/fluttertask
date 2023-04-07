@@ -77,7 +77,7 @@ class _trackDataState extends State<trackData> {
                    subtitle: e.eventClassifierCode=="ACT"?Text("Item Arrived at ${e.location}"):e.eventClassifierCode=="PLN"?Text("Item will Arrive at ${e.location}"):
                    e.eventClassifierCode=="EST"?Text("Item will estimated at ${e.location}"):Text("Item will Arrive at ${e.location}"))).toList(),
         indicators: transportlist.map((e) => Icon(Icons.directions_boat)).toList(),
-      ):Center(child: Text("No data Found"),)
+      ):Center(child: Text("No data Found please wait while getting record..."),)
     );
   }
 }

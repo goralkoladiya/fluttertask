@@ -186,7 +186,7 @@ class _createInquiryState extends State<createInquiry> {
                         borderRadius: BorderRadius.circular(40)
                     ),
                     child: Text("Add Inquiry",style: TextStyle(
-                      fontWeight: FontWeight.w600,fontSize: 16,
+                      fontWeight: FontWeight.bold,fontSize: 16,
 
                     ),),
                   ),
@@ -209,7 +209,6 @@ class _createInquiryState extends State<createInquiry> {
                     minWidth: double.infinity,
                     height:60,
                     onPressed: () async {
-
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
                         return trackData();
                       },));

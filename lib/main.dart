@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertask/getdata.dart';
 import 'package:fluttertask/signup.dart';
+import 'package:fluttertask/task2/createInquiry.dart';
 
 import 'login.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: MyApp(),
+    home: createInquiry(),
   ));
 }
 
